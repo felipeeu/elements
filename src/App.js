@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './css/App.css';
-import {Home} from './Home'
+import {Header} from './components/header.js'
+import {Main} from './components/main.js'
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         </a>
         
       </header> */}
-      <Home/>
+      <Header/>
+      <Main/>
     </div>
   );
 }
