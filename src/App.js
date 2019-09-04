@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './css/App.css';
 import {Header} from './components/header.js'
 import {Main} from './components/main.js'
+import axios from 'axios'
 
 function App() {
+  useEffect(() => {
+    //console.log("fetch")
+    axios.get('http://localhost:4000/elements')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+   
+  });
   return (
     <div className="App">
       {/* <header className="App-header">
