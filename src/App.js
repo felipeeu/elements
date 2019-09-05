@@ -6,6 +6,17 @@ import {Main} from './components/main.js'
 import axios from 'axios'
 
 function App() {
+ 
+  const responseMock = {
+    student: "Felipe Domingues",
+    element: "Tório",
+    symbol: "Th",
+    number: "90",
+    word: "loucão",
+    artdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio",
+    elementdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio"
+  }
+  
   useEffect(() => {
     //console.log("fetch")
     axios.get('http://localhost:4000/elements')
@@ -40,7 +51,15 @@ function App() {
         
       </header> */}
       <Header/>
-      <Main/>
+      <Main 
+        student = {responseMock.student}
+        element= { responseMock.element}
+        symbol={responseMock.symbol}
+        number = {responseMock.number}
+        word ={responseMock.word}
+        artdesc={responseMock.artdesc}
+        elementdesc={responseMock.elementdesc}
+      />
     </div>
   );
 }

@@ -2,23 +2,33 @@
 import React from "react";
 // Importando os components necessários da lib react-materialize
 import { Row, Col, Card } from 'react-materialize';
-import { ElementProfile } from "./profile.js";
+import { ElementProfile , StudentProfile} from "./profile.js";
 import {ElementDescription} from './element_description'
 import { ArtDescription } from "./art_description.js";
-export const Home = () => (
-  <Row>
+
+
+export const Home = (props) => (
+  
+<Row>
     <Col m={3} s={12}>
-      <ElementProfile />
+      <ElementProfile 
+        element ={props.element}
+        number = {props.number}  
+        symbol= {props.symbol}
+      />
+      <StudentProfile 
+        student = {props.student}
+        word={props.word}
+      />
     </Col>
     <Col m={8} s={12}>
-        <h5 className="subtitle">Sobre o Urânio</h5>
+        <h5 className="subtitle">Sobre o {props.element}</h5>
         <Card>
-            
-          <ElementDescription/>
+          <ElementDescription elementdesc = {props.elementdesc}/>
         </Card>
         <h5 className="subtitle">Sobre o Patch</h5>
         <Card>
-          <ArtDescription/>
+          <ArtDescription artdesc ={props.artdesc}/>
         </Card>
     </Col>
   </Row>
