@@ -14,12 +14,13 @@ function App() {
     number: "90",
     word: "loucão",
     artdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio",
-    elementdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio"
+    elementdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio",
+    avatar: "g"
   }
   
   useEffect(() => {
     //console.log("fetch")
-    axios.get('http://localhost:4000/elements')
+    axios.get('https://localhost:4000/elements/')
   .then(function (response) {
     // handle success
     console.log(response);
