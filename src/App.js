@@ -27,8 +27,8 @@ function App() {
   useEffect(() => {
     // Note that this replaces the entire object and deletes user key!
     setRequest({ loading: true });
-    //axios.get('http://www.mocky.io/v2/5d73c0f8330000373308186f')
-    axios.get('https://localhost:4000/elements/') 
+    axios.get('http://www.mocky.io/v2/5d73c0f8330000373308186f')
+    //axios.get('https://localhost:4000/elements/') 
       .then(response => {
         setRequest({
           loading: false,

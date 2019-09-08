@@ -9,7 +9,7 @@ export const Header = () => (
       <NavItem href='/'>
       {/* <img src={logo} className="App-logo-mini" alt="logo" /> */}
       </NavItem>
-      <NavItem href='/contact'>Contact</NavItem>
+      <NavItem href='/new'>Inserir Elemento</NavItem>
     </Navbar>
   </Row>
 );
