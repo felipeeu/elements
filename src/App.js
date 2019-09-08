@@ -1,66 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import logo from './logo.svg';
 import './css/App.css';
 import {Header} from './components/header.js'
 import {Main} from './components/main.js'
+import { Preloader } from 'react-materialize'
 import axios from 'axios'
 
 function App() {
  
-  const responseMock = {
-    student: "Felipe Domingues",
-    element: "Tório",
-    symbol: "Th",
-    number: "90",
-    word: "loucão",
-    artdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio",
-    elementdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio",
-    avatar: "g"
-  }
+  const [request, setRequest] = useState({
+    loading: false,
+    payload: null,
+  });
+
+  // const responseMock = {
+  //   student: "Felipe Domingues",
+  //   element: "Tório",
+  //   symbol: "Th",
+  //   number: "90",
+  //   word: "loucão",
+  //   artdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio",
+  //   elementdesc:"a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio a arte criada remete ao elemento urânio",
+  //   avatar: "g"
+  // }
   
   useEffect(() => {
-    //console.log("fetch")
-    axios.get('https://localhost:4000/elements/')
-  .then(function (response) {
-    // handle success
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .finally(function () {
-    // always executed
-  });
-   
-  });
+    // Note that this replaces the entire object and deletes user key!
+    setRequest({ loading: true });
+    //axios.get('http://www.mocky.io/v2/5d73c0f8330000373308186f')
+    axios.get('https://localhost:4000/elements/') 
+      .then(response => {
+        setRequest({
+          loading: false,
+          payload: response.data,
+          
+        });
+      });
+  }, []);
+
+
+const { loading, payload } = request;
+
+const filteredPayload = payload && payload.find(item => item.number === "90")
+
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        
-      </header> */}
       <Header/>
+      { loading? 
+      <Preloader flashing  size = "small"/>:
       <Main 
-        student = {responseMock.student}
-        element= { responseMock.element}
-        symbol={responseMock.symbol}
-        number = {responseMock.number}
-        word ={responseMock.word}
-        artdesc={responseMock.artdesc}
-        elementdesc={responseMock.elementdesc}
-      />
+        student = {filteredPayload && filteredPayload.student}
+        element= { filteredPayload && filteredPayload.element}
+        symbol={filteredPayload && filteredPayload.symbol}
+        number = {filteredPayload && filteredPayload.number}
+        word ={filteredPayload && filteredPayload.word}
+        artdesc={filteredPayload && filteredPayload.artdesc}
+        elementdesc={filteredPayload && filteredPayload.elementdesc}
+      />}
     </div>
   );
 }
