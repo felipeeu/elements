@@ -26,7 +26,7 @@ export const Home = (props) => (
         <Card>
           <ElementDescription elementdesc = {props.elementdesc}/>
         </Card>
-        <h5 className="subtitle">Sobre o Patch</h5>
+        <h5 className="subtitle">Sobre a Arte</h5>
         <Card>
           <ArtDescription artdesc ={props.artdesc}/>
         </Card>
