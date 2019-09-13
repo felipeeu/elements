@@ -5,6 +5,7 @@ import {Header} from './components/header.js'
 import {Main} from './components/main.js'
 import { Preloader } from 'react-materialize'
 import axios from 'axios'
+import Input from 'react-materialize/lib/Input';
 
 function App() {
  
@@ -45,7 +46,8 @@ const filteredPayload = payload && payload.find(item => item.number === "26")
 
   return (
     <div className="App">
-      <Header/>
+      {/* <Header/> */}
+      <Input/>
       { loading? 
       <Preloader flashing  size = "small"/>:
       <Main 

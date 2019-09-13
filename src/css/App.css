@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #eac926 */
 }
 
 .App-logo {
@@ -34,5 +37,16 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+#input_0{
+  width: 20vw;
+  justify-content: center;
+}
+@media (max-width: 420px) 
+{
+  #input_0{
+    width: 50vw;
+    justify-content: center;
   }
 }
