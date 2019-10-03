@@ -12,6 +12,7 @@ function App() {
     loading: false,
     payload: null,
   });
+  const [value , setValue] = useState()
 
   // const responseMock = {
   //   student: "Felipe Domingues",
@@ -27,7 +28,8 @@ function App() {
   useEffect(() => {
     // Note that this replaces the entire object and deletes user key!
     setRequest({ loading: true });
-    axios.get('http://www.mocky.io/v2/5d73c0f8330000373308186f')
+    axios.get('http://www.mocky.io/v2/5d96653a3b00001100c310d3')
+    //axios.get('http://www.mocky.io/v2/5d73c0f8330000373308186f')
     //axios.get('https://localhost:4000/elements/') 
       .then(response => {
         setRequest({
@@ -41,13 +43,14 @@ function App() {
 
 const { loading, payload } = request;
 
-const filteredPayload = payload && payload.find(item => item.number === "26")
+const filteredPayload = payload && payload.find(item => item.number === value)
 
   return (
     <div className="App">
       <Header/>
       { loading? 
       <Preloader flashing  size = "small"/>:
+      
       <Main 
         student = {filteredPayload && filteredPayload.student}
         element= { filteredPayload && filteredPayload.element}
@@ -56,7 +59,10 @@ const filteredPayload = payload && payload.find(item => item.number === "26")
         word ={filteredPayload && filteredPayload.word}
         artdesc={filteredPayload && filteredPayload.artdesc}
         elementdesc={filteredPayload && filteredPayload.elementdesc}
-      />}
+        setvalue = {setValue}
+      />
+      
+      }
     </div>
   );
 }
