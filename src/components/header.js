@@ -11,6 +11,8 @@ export const Header = () => (
     color: 'white'
   }}>TABELA PERIÓDICA</span>
     </Navbar>
+
+
   </Row>
 );
 
