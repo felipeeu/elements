@@ -9,18 +9,8 @@ import { ArtDescription } from "./art_description.js";
 
 export const Home = (props) => {
 
-
   return (
     <Row>
-      <input
-      
-      type= "number"
-      //onChange ={() => props.setValue()}
-        //value={value}
-        placeholder={"digite o número atômico do elemento"}
-        style={{
-          width: 280
-        }} />
       <Col m={3} s={12}>
         <ElementProfile
           element={props.element}

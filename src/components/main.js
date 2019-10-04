@@ -18,7 +18,7 @@ export const  Main = (props) => (
           word ={props.word}
           artdesc={props.artdesc}
           elementdesc={props.elementdesc} 
-          setvalue = {setValue}
+          
         />
     </Container>
   </main>  
