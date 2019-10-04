@@ -7,7 +7,7 @@ import { Preloader } from 'react-materialize'
 import axios from 'axios'
 import Input from 'react-materialize/lib/Input';
 import { isAbsolute } from 'path';
-
+import {data} from "./data"
 
 
 
@@ -24,11 +24,12 @@ class App extends React.Component {
 
   componentDidMount() {
     this.setState({ loading: true })
-    axios.get('  http://www.mocky.io/v2/5d97c6273400006700f4896a')
-      .then(response => {
-        this.setState({ payload: response.data })
-        this.setState({ filteredPayload: response.data.find(item => item.number === this.state.number) })
-      });
+    // axios.get('  http://www.mocky.io/v2/5d97c6273400006700f4896a')
+    //   .then(response => {
+    //     this.setState({ payload: response.data })
+    //     this.setState({ filteredPayload: response.data.find(item => item.number === this.state.number) })
+    //   });
+    this.setState({ payload: data })
     this.setState({ loading: false })
 
   }
