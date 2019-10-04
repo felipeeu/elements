@@ -6,6 +6,7 @@ import { Main } from './components/main.js'
 import { Preloader } from 'react-materialize'
 import axios from 'axios'
 import Input from 'react-materialize/lib/Input';
+import { isAbsolute } from 'path';
 
 
 
@@ -15,82 +16,69 @@ class App extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      number: 20 , 
+      number: 1,
       payload: [],
       //filteredPayload: {}
     };
   }
 
   componentDidMount() {
-        axios.get('http://www.mocky.io/v2/5d96653a3b00001100c310d3')
+    this.setState({ loading: true })
+    axios.get('  http://www.mocky.io/v2/5d97c6273400006700f4896a')
       .then(response => {
-        this.setState({payload:response.data})
-        this.setState({filteredPayload: response.data.find(item => item.number === this.state.number)})
+        this.setState({ payload: response.data })
+        this.setState({ filteredPayload: response.data.find(item => item.number === this.state.number) })
       });
-      //this.setState({filteredPayload: this.state.payload.find(item => item.number === this.state.number)})
+    this.setState({ loading: false })
+
   }
 
-  handle () {
-    
-    axios.get('http://www.mocky.io/v2/5d96653a3b00001100c310d3')
-    .then(response => {
-      this.setState({payload:response.data})
-      this.setState({filteredPayload: response.data.find(item => item.number === this.state.number)})
-    });
-  }
- 
 
   render() {
-    const {filteredPayload, loading,payload, number} = this.state
-      console.log("payload: ", payload)
-  console.log("number: ",typeof number)
-  console.log("filter: ", filteredPayload)
+    const { filteredPayload, loading, payload, number } = this.state
 
     return (
-       <div className="App">
-      <Header />
-      <input
-        type="number"
-        onChange={(event) => {
-          this.setState({number:parseInt(event.target.value)})
-          this.setState({filteredPayload: payload.find(item => item.number === parseInt(event.target.value))})
-          event.preventDefault()
-          
-        }
+      <div className="App">
+        <Header />
+        <input
+          type="number"
+          onChange={(event) => {
+            this.setState({ number: parseInt(event.target.value) })
+            this.setState({ filteredPayload: payload.find(item => item.number === parseInt(event.target.value)) })
+            event.preventDefault()
+          }
+          }
+          placeholder={"digite o número atômico do elemento"}
+          style={{
+            position: "absolute",
+            left: 100,
+            width: 280
+          }} />
+
+        {loading || !number || number > 99 ?
+          <div style={{ display:"flex",justifyContent:"center", position: "absolute", top: "40vh", left: "45vw"}}>
+             <span style={{ fontSize:45 , width: 200 }}>Digite um número atômico válido !</span>
+            <Preloader flashing size="small" />
+           
+          </div>
+          :
+          <Main
+            student={filteredPayload && filteredPayload.student}
+            element={filteredPayload && filteredPayload.element}
+            symbol={filteredPayload && filteredPayload.symbol}
+            number={filteredPayload && filteredPayload.number}
+            word={filteredPayload && filteredPayload.word}
+            artdesc={filteredPayload && filteredPayload.artdesc}
+            elementdesc={filteredPayload && filteredPayload.elementdesc}
+
+
+          />
 
         }
-        //value={value}
-        placeholder={"digite o número atômico do elemento"}
-        style={{
-          position: "absolute",
-          left: 100,
-          width: 280
-        }} />
-      <button  onClick = {() => this.handle() } >
-        button
-        </button>
-      
-      
-      {loading ?
-        <Preloader flashing size="small" /> :
-
-        <Main
-          student={filteredPayload && filteredPayload.student}
-          element={filteredPayload && filteredPayload.element}
-          symbol={filteredPayload && filteredPayload.symbol}
-          number={filteredPayload && filteredPayload.number}
-          word={filteredPayload && filteredPayload.word}
-          artdesc={filteredPayload && filteredPayload.artdesc}
-          elementdesc={filteredPayload && filteredPayload.elementdesc}
-          
-         
-        />
-
-      }
-    </div>
+      </div>
     );
   }
 }
 
 
- export default App;
+export default App;
