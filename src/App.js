@@ -7,7 +7,7 @@ import { Preloader } from "react-materialize";
 import axios from "axios";
 import Input from "react-materialize/lib/Input";
 import { isAbsolute } from "path";
-import { PeriodicTable } from "./components/periodic_table";
+import PeriodicTable from "./components/periodic_table";
 // import {data} from "./data"
 
 class App extends React.Component {
@@ -23,6 +23,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.setState({ loading: true });
+
     axios.get("http://localhost:4000/elements/").then(response => {
       console.log("RESPONSE: ", response);
       this.setState({ payload: response.data });
@@ -42,7 +43,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <input
+        {/* <input
           type="number"
           onChange={event => {
             this.setState({ number: parseInt(event.target.value) });
@@ -59,8 +60,8 @@ class App extends React.Component {
             left: 100,
             width: 280
           }}
-        />
-        <PeriodicTable />
+        /> */}
+        {/* <PeriodicTable payload={payload} /> */}
 
         {/* {loading || !number || number > 99 ? (
           <div
@@ -77,17 +78,18 @@ class App extends React.Component {
             </span>
             <Preloader flashing size="small" />
           </div>
-        ) : (
-          <Main
-            student={filteredPayload && filteredPayload.student}
-            element={filteredPayload && filteredPayload.element}
-            symbol={filteredPayload && filteredPayload.symbol}
-            number={filteredPayload && filteredPayload.number}
-            word={filteredPayload && filteredPayload.word}
-            artdesc={filteredPayload && filteredPayload.artdesc}
-            elementdesc={filteredPayload && filteredPayload.elementdesc}
-          />
-        )} */}
+        ) : ( */}
+        <Main
+          // student={filteredPayload && filteredPayload.student}
+          // element={filteredPayload && filteredPayload.element}
+          // symbol={filteredPayload && filteredPayload.symbol}
+          // number={filteredPayload && filteredPayload.number}
+          // word={filteredPayload && filteredPayload.word}
+          // artdesc={filteredPayload && filteredPayload.artdesc}
+          // elementdesc={filteredPayload && filteredPayload.elementdesc}
+          payload={payload}
+        />
+        {/* )}  */}
       </div>
     );
   }
