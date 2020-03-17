@@ -1,19 +1,29 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { withRouter } from "react-router-dom";
 
 const styles = {
   tableContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(18,  1fr )",
-    gridTemplateRows: "repeat(10, 1fr)",
-    gridRowGap: "2px",
-    gridColumnGap: "2px",
+    gridTemplateColumns: "repeat(18,  75px )",
+    gridTemplateRows: "repeat(10, 75px)",
+    gridRowGap: "3px",
+    gridColumnGap: "3px",
     height: "80vh",
     padding: "30px"
   },
 
   elements: {
-    h: { gridColumn: 1, gridRow: 1, backgroundColor: "pink" },
-    he: { gridColumn: 18, gridRow: 1, backgroundColor: "pink" },
+    h: {
+      gridColumn: 1,
+      gridRow: 1,
+      backgroundColor: "pink"
+    },
+    he: {
+      gridColumn: 18,
+      gridRow: 1,
+      backgroundColor: "pink"
+    },
     li: { gridColumn: 1, gridRow: 2, backgroundColor: "pink" },
     be: { gridColumn: 2, gridRow: 2, backgroundColor: "pink" },
     b: { gridColumn: 13, gridRow: 2, backgroundColor: "pink" },
@@ -68,6 +78,21 @@ const styles = {
     xe: { gridColumn: 18, gridRow: 5, backgroundColor: "pink" },
     cs: { gridColumn: 1, gridRow: 6, backgroundColor: "pink" },
     ba: { gridColumn: 2, gridRow: 6, backgroundColor: "pink" },
+    la: { gridColumn: 4, gridRow: 9, backgroundColor: "pink" },
+    ce: { gridColumn: 5, gridRow: 9, backgroundColor: "pink" },
+    pr: { gridColumn: 6, gridRow: 9, backgroundColor: "pink" },
+    nd: { gridColumn: 7, gridRow: 9, backgroundColor: "pink" },
+    pm: { gridColumn: 8, gridRow: 9, backgroundColor: "pink" },
+    sm: { gridColumn: 9, gridRow: 9, backgroundColor: "pink" },
+    eu: { gridColumn: 10, gridRow: 9, backgroundColor: "pink" },
+    gd: { gridColumn: 11, gridRow: 9, backgroundColor: "pink" },
+    tb: { gridColumn: 12, gridRow: 9, backgroundColor: "pink" },
+    dy: { gridColumn: 13, gridRow: 9, backgroundColor: "pink" },
+    ho: { gridColumn: 14, gridRow: 9, backgroundColor: "pink" },
+    er: { gridColumn: 15, gridRow: 9, backgroundColor: "pink" },
+    tm: { gridColumn: 16, gridRow: 9, backgroundColor: "pink" },
+    yb: { gridColumn: 17, gridRow: 9, backgroundColor: "pink" },
+    lu: { gridColumn: 18, gridRow: 9, backgroundColor: "pink" },
     hf: { gridColumn: 4, gridRow: 6, backgroundColor: "pink" },
     ta: { gridColumn: 5, gridRow: 6, backgroundColor: "pink" },
     w: { gridColumn: 6, gridRow: 6, backgroundColor: "pink" },
@@ -85,6 +110,21 @@ const styles = {
     rn: { gridColumn: 18, gridRow: 6, backgroundColor: "pink" },
     fr: { gridColumn: 1, gridRow: 7, backgroundColor: "pink" },
     ra: { gridColumn: 2, gridRow: 7, backgroundColor: "pink" },
+    ac: { gridColumn: 4, gridRow: 10, backgroundColor: "pink" },
+    th: { gridColumn: 5, gridRow: 10, backgroundColor: "pink" },
+    pa: { gridColumn: 6, gridRow: 10, backgroundColor: "pink" },
+    u: { gridColumn: 7, gridRow: 10, backgroundColor: "pink" },
+    np: { gridColumn: 8, gridRow: 10, backgroundColor: "pink" },
+    pu: { gridColumn: 9, gridRow: 10, backgroundColor: "pink" },
+    am: { gridColumn: 10, gridRow: 10, backgroundColor: "pink" },
+    cm: { gridColumn: 11, gridRow: 10, backgroundColor: "pink" },
+    bk: { gridColumn: 12, gridRow: 10, backgroundColor: "pink" },
+    cf: { gridColumn: 13, gridRow: 10, backgroundColor: "pink" },
+    es: { gridColumn: 14, gridRow: 10, backgroundColor: "pink" },
+    fm: { gridColumn: 15, gridRow: 10, backgroundColor: "pink" },
+    md: { gridColumn: 16, gridRow: 10, backgroundColor: "pink" },
+    no: { gridColumn: 17, gridRow: 10, backgroundColor: "pink" },
+    lr: { gridColumn: 18, gridRow: 10, backgroundColor: "pink" },
     rf: { gridColumn: 4, gridRow: 7, backgroundColor: "pink" },
     db: { gridColumn: 5, gridRow: 7, backgroundColor: "pink" },
     sg: { gridColumn: 6, gridRow: 7, backgroundColor: "pink" },
@@ -100,36 +140,16 @@ const styles = {
     lv: { gridColumn: 16, gridRow: 7, backgroundColor: "pink" },
     ts: { gridColumn: 17, gridRow: 7, backgroundColor: "pink" },
     og: { gridColumn: 18, gridRow: 7, backgroundColor: "pink" },
-    la: { gridColumn: 4, gridRow: 9, backgroundColor: "pink" },
-    ce: { gridColumn: 5, gridRow: 9, backgroundColor: "pink" },
-    pr: { gridColumn: 6, gridRow: 9, backgroundColor: "pink" },
-    nd: { gridColumn: 7, gridRow: 9, backgroundColor: "pink" },
-    pm: { gridColumn: 8, gridRow: 9, backgroundColor: "pink" },
-    sm: { gridColumn: 9, gridRow: 9, backgroundColor: "pink" },
-    eu: { gridColumn: 10, gridRow: 9, backgroundColor: "pink" },
-    gd: { gridColumn: 11, gridRow: 9, backgroundColor: "pink" },
-    tb: { gridColumn: 12, gridRow: 9, backgroundColor: "pink" },
-    dy: { gridColumn: 13, gridRow: 9, backgroundColor: "pink" },
-    ho: { gridColumn: 14, gridRow: 9, backgroundColor: "pink" },
-    er: { gridColumn: 15, gridRow: 9, backgroundColor: "pink" },
-    tm: { gridColumn: 16, gridRow: 9, backgroundColor: "pink" },
-    yb: { gridColumn: 17, gridRow: 9, backgroundColor: "pink" },
-    lu: { gridColumn: 18, gridRow: 9, backgroundColor: "pink" },
-    ac: { gridColumn: 4, gridRow: 10, backgroundColor: "pink" },
-    th: { gridColumn: 5, gridRow: 10, backgroundColor: "pink" },
-    pa: { gridColumn: 6, gridRow: 10, backgroundColor: "pink" },
-    u: { gridColumn: 7, gridRow: 10, backgroundColor: "pink" },
-    np: { gridColumn: 8, gridRow: 10, backgroundColor: "pink" },
-    pu: { gridColumn: 9, gridRow: 10, backgroundColor: "pink" },
-    am: { gridColumn: 10, gridRow: 10, backgroundColor: "pink" },
-    cm: { gridColumn: 11, gridRow: 10, backgroundColor: "pink" },
-    bk: { gridColumn: 12, gridRow: 10, backgroundColor: "pink" },
-    cf: { gridColumn: 13, gridRow: 10, backgroundColor: "pink" },
-    es: { gridColumn: 14, gridRow: 10, backgroundColor: "pink" },
-    fm: { gridColumn: 15, gridRow: 10, backgroundColor: "pink" },
-    md: { gridColumn: 16, gridRow: 10, backgroundColor: "pink" },
-    no: { gridColumn: 17, gridRow: 10, backgroundColor: "pink" },
-    lr: { gridColumn: 18, gridRow: 10, backgroundColor: "pink" }
+    la_lu: {
+      gridColumn: 3,
+      gridRow: 6,
+      backgroundColor: "blue",
+      display: "none"
+    },
+    ac_lr: { gridColumn: 3, gridRow: 7, backgroundColor: "blue" }
+  },
+  name: {
+    fontSize: "smaller"
   }
 };
 
@@ -144,10 +164,39 @@ for (const element in allElements) {
   elementsList.push(newObject);
 }
 
-export const PeriodicTable = () => (
-  <div style={styles.tableContainer}>
-    {elementsList.map((item, idx) => {
-      return <section key={idx} style={styles.elements[item.el]}></section>;
-    })}
-  </div>
-);
+const PeriodicTable = ({ payload, history }) => {
+  return (
+    <div style={styles.tableContainer}>
+      {elementsList.map((item, idx) => {
+        const atomicNumber = idx + 1;
+        const parsedAtomicNumber = atomicNumber.toString();
+        const elementObject =
+          payload && payload.find(el => el.number === parsedAtomicNumber);
+
+        const elementName = elementObject && elementObject.name;
+        const elementSymbol = elementObject && elementObject.symbol;
+        const elementNumber = elementObject && elementObject.number;
+
+        return (
+          <motion.div
+            whileHover={{ border: "solid" }}
+            // whileTap={() => console.log("Go!")}
+            whileTap={{ scale: 3.0 }}
+            onClick={() => {
+              history.push("/" + atomicNumber);
+            }}
+            key={atomicNumber}
+            style={styles.elements[item.el]}
+          >
+            <section>{elementNumber}</section>
+            <div>
+              <b>{elementSymbol}</b>
+            </div>
+            <span style={styles.name}>{elementName}</span>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
+export default withRouter(PeriodicTable);
