@@ -4,7 +4,13 @@ import { Header } from "./components/header.js";
 import { Main } from "./components/main.js";
 import axios from "axios";
 
-// import {data} from "./data"
+const styles = {
+  appContainer:{
+    display:"flex",
+    flexDirection:"column",
+    alignItems: "center"
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -35,7 +41,7 @@ class App extends React.Component {
     const { payload } = this.state;
 
     return (
-      <div>
+      <div style = {styles.appContainer}>
         <Header />
         <Main payload={payload} />
       </div>
