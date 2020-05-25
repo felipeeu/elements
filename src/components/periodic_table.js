@@ -2,15 +2,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import { withRouter } from "react-router-dom";
 
+
+
 const styles = {
   tableContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(18,  75px )",
-    gridTemplateRows: "repeat(10, 75px)",
+    gridTemplateColumns: "repeat(18,  5vw )",
+    gridTemplateRows: "repeat(10, auto)",
     gridRowGap: "3px",
     gridColumnGap: "3px",
-    height: "80vh",
-    padding: "30px"
+    height: "70px",
+    width: "70px"
   },
 
   elements: {
@@ -179,8 +181,7 @@ const PeriodicTable = ({ payload, history }) => {
 
         return (
           <motion.div
-            whileHover={{ border: "solid" }}
-            // whileTap={() => console.log("Go!")}
+            whileHover={{ border: " solid" }}
             whileTap={{ scale: 3.0 }}
             onClick={() => {
               history.push("/" + atomicNumber);
