@@ -1,14 +1,20 @@
 import React , {useEffect} from "react";
 import { motion } from "framer-motion";
 import { withRouter } from "react-router-dom";
+import styled from 'styled-jss'
+
+const Button = styled('button')({
+  fontSize: 12,
+  
+})
 
 const styles = {
   tableContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(18,  5vw )",
+    gridTemplateColumns: "repeat(18,  5em )",
     gridTemplateRows: "repeat(10, auto)",
     gridRowGap: "3px",
-    gridColumnGap: "3px"
+    gridColumnGap: "3px",
   },
 
   elements: {
@@ -152,12 +158,10 @@ for (const element in allElements) {
 
 const PeriodicTable = ({ payload, history }) => {
 
-  
-  
-
 
   return (
     <div style={styles.tableContainer}>
+      <Button>CSS-JS</Button>
       {elementsList.map((item, idx) => {
         const atomicNumber = idx + 1;
         const parsedAtomicNumber = atomicNumber.toString();
