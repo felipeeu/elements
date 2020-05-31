@@ -1,20 +1,27 @@
-import React , {useEffect} from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { withRouter } from "react-router-dom";
-import styled from 'styled-jss'
+import { withRouter, RouteComponentProps } from "react-router-dom";
+// import styled from 'styled-jss'
 
-const Button = styled('button')({
-  fontSize: 12,
-  
-})
+// const Button = styled('button')({
+//   fontSize: 12,
 
-const styles = {
+// })
+
+interface IStyle {
+  tableContainer: any;
+  elements: any;
+  name: any;
+  common: any;
+}
+
+const styles: IStyle = {
   tableContainer: {
     display: "grid",
     gridTemplateColumns: "repeat(18,  5em )",
     gridTemplateRows: "repeat(10, auto)",
     gridRowGap: "3px",
-    gridColumnGap: "3px",
+    gridColumnGap: "3px"
   },
 
   elements: {
@@ -142,45 +149,61 @@ const styles = {
   name: {
     fontSize: "smaller"
   },
-  common:{backgroundColor: "pink"}
+  common: { backgroundColor: "pink" }
 };
 
-const elementsList = [];
-const allElements = styles.elements;
+let elementsList: Array<object> = [];
 
-for (const element in allElements) {
+
+for (const element in styles.elements) {
+  const allElements = styles.elements;
+  // let elementsList:Array<object> = [];
   const newObject = {
     el: element,
     ...allElements[element]
   };
   elementsList.push(newObject);
+  // elementsList = [...newObject];
 }
 
-const PeriodicTable = ({ payload, history }) => {
+interface IElement {
+  name: string;
+  number: string;
+  symbol: string;
+}
+ 
+const getElementByAtomicNumber=(atomicNumber:string,payload:any)=> payload && payload.find((el: any) => el.number === atomicNumber);
 
+const PeriodicTable: React.FC<{
+  props: Array<object>;
+  // propsRoute: RouteComponentProps;
+}> = ({ props }) => {
+  // const PeriodicTable = ({ payload, history }) => {
+  // const history = propsRoute.history;
+  console.log("props: ", props);
 
   return (
     <div style={styles.tableContainer}>
-      <Button>CSS-JS</Button>
-      {elementsList.map((item, idx) => {
+      {elementsList.map((item: any, idx: number) => {
         const atomicNumber = idx + 1;
         const parsedAtomicNumber = atomicNumber.toString();
-        const elementObject =
-          payload && payload.find(el => el.number === parsedAtomicNumber);
 
-        const elementName = elementObject && elementObject.name;
+        // const elementObject =
+        //   props && props.find((el: any) => el.number === parsedAtomicNumber);
+        const elementObject:IElement = getElementByAtomicNumber(parsedAtomicNumber,props)
+        const elementName= elementObject && elementObject.name;
         const elementSymbol = elementObject && elementObject.symbol;
         const elementNumber = elementObject && elementObject.number;
 
         return (
           <motion.div
-            whileHover={{ boxShadow:"0px 0px 0px 2px black inset" }}
+            whileHover={{ boxShadow: "0px 0px 0px 2px black inset" }}
             whileTap={{ scale: 3.0 }}
-            onClick={() => {
-              history.push("/" + atomicNumber);
-            }}
+            // onClick={() => {
+            //   history.push("/" + atomicNumber);
+            // }}
             key={atomicNumber}
-            style={{...styles.elements[item.el], ...styles.common}}
+            style={{ ...styles.elements[item.el], ...styles.common }}
           >
             <section>{elementNumber}</section>
             <div>
@@ -193,4 +216,5 @@ const PeriodicTable = ({ payload, history }) => {
     </div>
   );
 };
-export default withRouter(PeriodicTable);
+// export default withRouter(PeriodicTable);
+export default PeriodicTable;

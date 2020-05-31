@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios'
 
 axios.get('localhost:4000/')
   .then(function (response) {

@@ -4,6 +4,11 @@
   "homepage": "https://felipeeu.github.io/app_element_client/",
   "private": true,
   "dependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.6",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
     "axios": "^0.19.0",
     "formik": "^1.5.8",
     "framer-motion": "^1.9.0",
@@ -13,6 +18,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.4.1",
     "styled-jss": "^2.2.3",
+    "typescript": "^3.9.3",
     "yup": "^0.27.0"
   },
   "scripts": {
