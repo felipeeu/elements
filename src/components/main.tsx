@@ -1,20 +1,22 @@
 import React from "react";
 import Routes from "../routes";
 
-const styles = {
+
+interface IStyleMain {
+  main:any
+}
+
+const styles:IStyleMain = {
   main: {
     textAlign: "center"
   }
 };
-export const Main: React.FC<{ props:Array<object>}> = ({props })=> {
+ const Main: React.FC<{ props:Array<object>}> = ({props })=> {
   return (
-    <main>
+    <main style = {styles.main}>
       <Routes props={props} />
     </main>
   );
 };
-// export const Main = props => (
-//   <main style= {styles.main}>
-//     <Routes payload={props.payload} />
-//   </main>
-// );
+export default Main;
+

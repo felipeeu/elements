@@ -2,13 +2,14 @@ import React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { motion } from "framer-motion";
 
-
+type TParams = { atomicNumber: string };
 
 const CardElement: React.FC<{
   props: Array<object>;
-  // propsRoute: RouteComponentProps;
-}> = (props) => {
  
+  // propsRoute: RouteComponentProps;
+}> = (props, {match} : RouteComponentProps<TParams> ) => {
+ console.log("match",match)
   // const atomicNumber = propsRoute.match.params;
   // console.log("atomicNumber",atomicNumber);
   // const elementData =

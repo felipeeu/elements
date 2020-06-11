@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import { motion } from "framer-motion";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import ElementContext from "../context/elements_context"
 // import styled from 'styled-jss'
 
 // const Button = styled('button')({
 //   fontSize: 12,
-
 // })
 
 interface IStyle {
@@ -154,16 +154,13 @@ const styles: IStyle = {
 
 let elementsList: Array<object> = [];
 
-
 for (const element in styles.elements) {
   const allElements = styles.elements;
-  // let elementsList:Array<object> = [];
   const newObject = {
     el: element,
     ...allElements[element]
   };
   elementsList.push(newObject);
-  // elementsList = [...newObject];
 }
 
 interface IElement {
@@ -171,27 +168,31 @@ interface IElement {
   number: string;
   symbol: string;
 }
- 
-const getElementByAtomicNumber=(atomicNumber:string,payload:any)=> payload && payload.find((el: any) => el.number === atomicNumber);
 
-const PeriodicTable: React.FC<{
-  props: Array<object>;
-  // propsRoute: RouteComponentProps;
-}> = ({ props }) => {
-  // const PeriodicTable = ({ payload, history }) => {
-  // const history = propsRoute.history;
-  console.log("props: ", props);
+const getElementByAtomicNumber = (atomicNumber: string, payload: any) =>
+  payload && payload.find((el: any) => el.number === atomicNumber);
+
+type AtomParams = {
+  atomicNumber: string;
+};
+type AtomDetailProps = RouteComponentProps<AtomParams>;
+
+
+const PeriodicTable: React.FC<AtomDetailProps> = ({ history }) => {
+  
+  const elementsContext = useContext(ElementContext);
+  const elementsPayload = elementsContext && elementsContext.data
 
   return (
     <div style={styles.tableContainer}>
       {elementsList.map((item: any, idx: number) => {
         const atomicNumber = idx + 1;
         const parsedAtomicNumber = atomicNumber.toString();
-
-        // const elementObject =
-        //   props && props.find((el: any) => el.number === parsedAtomicNumber);
-        const elementObject:IElement = getElementByAtomicNumber(parsedAtomicNumber,props)
-        const elementName= elementObject && elementObject.name;
+        const elementObject: IElement = getElementByAtomicNumber(
+          parsedAtomicNumber,
+          elementsPayload
+        );
+        const elementName = elementObject && elementObject.name;
         const elementSymbol = elementObject && elementObject.symbol;
         const elementNumber = elementObject && elementObject.number;
 
@@ -199,22 +200,22 @@ const PeriodicTable: React.FC<{
           <motion.div
             whileHover={{ boxShadow: "0px 0px 0px 2px black inset" }}
             whileTap={{ scale: 3.0 }}
-            // onClick={() => {
-            //   history.push("/" + atomicNumber);
-            // }}
+            onClick={() => {
+              history.push("/" + atomicNumber);
+            }}
             key={atomicNumber}
             style={{ ...styles.elements[item.el], ...styles.common }}
           >
-            <section>{elementNumber}</section>
+             <section>{elementNumber}</section>
             <div>
               <b>{elementSymbol}</b>
             </div>
-            <span style={styles.name}>{elementName}</span>
+            <span style={styles.name}>{elementName}</span> 
           </motion.div>
         );
       })}
     </div>
   );
 };
-// export default withRouter(PeriodicTable);
-export default PeriodicTable;
+export default withRouter(PeriodicTable);
+
