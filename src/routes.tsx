@@ -9,7 +9,7 @@ const Routes: React.FC<{props:Array<object> }> =(props)=>{
     <Switch>
       <Route
         path="/:atomicNumber"
-        render={() => <CardElement {...props} />}
+        render={() => <CardElement />}
       />
       
       <Route

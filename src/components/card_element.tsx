@@ -1,32 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { motion } from "framer-motion";
+import { AtomDetailProps } from "./periodic_table";
+import ElementContext from "../context/elements_context";
 
-type TParams = { atomicNumber: string };
 
-const CardElement: React.FC<{
-  props: Array<object>;
- 
-  // propsRoute: RouteComponentProps;
-}> = (props, {match} : RouteComponentProps<TParams> ) => {
- console.log("match",match)
-  // const atomicNumber = propsRoute.match.params;
-  // console.log("atomicNumber",atomicNumber);
-  // const elementData =
-  //   props.payload &&
-  //   props.payload.find((element: any) => element.number === atomicNumber);
+const CardElement: React.FC<AtomDetailProps> = ({ match }) => {
+  console.log("match", match);
+  const { atomicNumber } = match.params;
+
+  const elementsContext = useContext(ElementContext);
+  const elementsPayload = elementsContext && elementsContext.data;
+  const elementData:any = elementsPayload && elementsPayload.find(
+    (element: any) => element.number === atomicNumber
+  );
 
   return (
     <div>
       <motion.div>
         <div>
-          {/* <h1>{elementData && elementData.name}</h1>
-          <img src={elementData && elementData.image} /> */}
+          <h1>{elementData && elementData.name}</h1>
+          <img src={elementData && elementData.image} />
         </div>
       </motion.div>
     </div>
   );
 };
 
-// export default withRouter(CardElement) 
-export default CardElement 
+// export default withRouter(CardElement)
+export default withRouter(CardElement);

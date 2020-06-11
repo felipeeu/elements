@@ -172,10 +172,10 @@ interface IElement {
 const getElementByAtomicNumber = (atomicNumber: string, payload: any) =>
   payload && payload.find((el: any) => el.number === atomicNumber);
 
-type AtomParams = {
+ type AtomParams = {
   atomicNumber: string;
 };
-type AtomDetailProps = RouteComponentProps<AtomParams>;
+export type AtomDetailProps = RouteComponentProps<AtomParams>;
 
 
 const PeriodicTable: React.FC<AtomDetailProps> = ({ history }) => {
