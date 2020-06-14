@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "./components/header";
 import { getElements } from "./api";
-import ElementContext from "./context/elements_context"
+import ElementContext from "./context/elements_context";
 
 const Main = React.lazy(() => import("./components/main"));
 
@@ -19,14 +19,14 @@ const styles: IStylesApp = {
 
 const App: React.FC<{}> = () => {
   const [data, setData] = useState([]);
-  
+
   interface dataInterface {
-    data: Array<object>
+    data: Array<object>;
   }
 
-  const dataToContext:dataInterface ={
-    data:data
-  } 
+  const dataToContext: dataInterface = {
+    data: data
+  };
 
   useEffect(() => {
     getElements("http://localhost:4000/elements", setData);
@@ -36,7 +36,7 @@ const App: React.FC<{}> = () => {
     <div style={styles.appContainer}>
       <Header />
       <React.Suspense fallback={<h3>Carregando...</h3>}>
-        <ElementContext.Provider value= {dataToContext}>
+        <ElementContext.Provider value={dataToContext}>
           <Main props={data} />
         </ElementContext.Provider>
       </React.Suspense>

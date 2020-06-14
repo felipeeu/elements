@@ -2,11 +2,7 @@ import React, {useContext} from "react";
 import { motion } from "framer-motion";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import ElementContext from "../context/elements_context"
-// import styled from 'styled-jss'
 
-// const Button = styled('button')({
-//   fontSize: 12,
-// })
 
 interface IStyle {
   tableContainer: any;
@@ -22,6 +18,7 @@ const styles: IStyle = {
     gridTemplateRows: "repeat(10, auto)",
     gridRowGap: "3px",
     gridColumnGap: "3px"
+
   },
 
   elements: {
