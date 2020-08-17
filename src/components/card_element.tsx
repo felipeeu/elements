@@ -12,12 +12,14 @@ const Image = styled.img`
 
 const Card = styled.div`
   background: #fff;
-  position: relative;
-  height: 30em;
+  /* position: relative; */
+  /* height: 30em; */
   width: 20em;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 `;
-
+const TextContainer = styled.div`
+  padding-bottom: 20px;
+`;
 const PrevButton = styled.button`
   background-color: transparent;
   border: none;
@@ -57,8 +59,10 @@ const CardElement: React.FC<AtomDetailProps> = ({ match }) => {
           alt={`Atomic number: ${atomicNumber}`}
           src={elementData && elementData.image}
         />
-        <h1>{elementData && elementData.number}</h1>
-        <h5>{elementData && elementData.name}</h5>
+        <TextContainer>
+          <h1>{elementData && elementData.number}</h1>
+          <h5>{elementData && elementData.name}</h5>
+        </TextContainer>
       </Card>
     </motion.div>
   );

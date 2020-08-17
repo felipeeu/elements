@@ -1,8 +1,7 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import ElementContext from "../context/elements_context"
-
+import ElementContext from "../context/elements_context";
 
 interface IStyle {
   tableContainer: any;
@@ -14,11 +13,12 @@ interface IStyle {
 const styles: IStyle = {
   tableContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(18,  5em )",
-    gridTemplateRows: "repeat(10, auto)",
+    gridTemplateColumns: "repeat(18,  4vw )",
+    gridTemplateRows: "repeat(10, 4vw)",
     gridRowGap: "3px",
-    gridColumnGap: "3px"
-
+    gridColumnGap: "3px",
+    textAlign: "center",
+    paddingTop:"100px"
   },
 
   elements: {
@@ -169,16 +169,14 @@ interface IElement {
 const getElementByAtomicNumber = (atomicNumber: string, payload: any) =>
   payload && payload.find((el: any) => el.number === atomicNumber);
 
- type AtomParams = {
+type AtomParams = {
   atomicNumber: string;
 };
 export type AtomDetailProps = RouteComponentProps<AtomParams>;
 
-
 const PeriodicTable: React.FC<AtomDetailProps> = ({ history }) => {
-  
   const elementsContext = useContext(ElementContext);
-  const elementsPayload = elementsContext && elementsContext.data
+  const elementsPayload = elementsContext && elementsContext.data;
 
   return (
     <div style={styles.tableContainer}>
@@ -203,11 +201,11 @@ const PeriodicTable: React.FC<AtomDetailProps> = ({ history }) => {
             key={atomicNumber}
             style={{ ...styles.elements[item.el], ...styles.common }}
           >
-             <section>{elementNumber}</section>
+            <section>{elementNumber}</section>
             <div>
               <b>{elementSymbol}</b>
             </div>
-            <span style={styles.name}>{elementName}</span> 
+            <span style={styles.name}>{elementName}</span>
           </motion.div>
         );
       })}
@@ -215,4 +213,3 @@ const PeriodicTable: React.FC<AtomDetailProps> = ({ history }) => {
   );
 };
 export default withRouter(PeriodicTable);
-
