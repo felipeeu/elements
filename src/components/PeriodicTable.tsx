@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import ElementContext from "../context/elements_context";
+import ElementContext from "../context/ElementsContext";
+import { useNavigate } from "react-router-dom";
 
 interface IStyle {
   tableContainer: any;
   elements: any;
   name: any;
   common: any;
+  elementWrapper: any;
 }
 
 const styles: IStyle = {
@@ -18,7 +19,7 @@ const styles: IStyle = {
     gridRowGap: "3px",
     gridColumnGap: "3px",
     textAlign: "center",
-    paddingTop:"100px"
+    paddingTop: "100px",
   },
 
   elements: {
@@ -141,12 +142,20 @@ const styles: IStyle = {
     ts: { gridColumn: 17, gridRow: 7 },
     og: { gridColumn: 18, gridRow: 7 },
     la_lu: { gridColumn: 3, gridRow: 6 },
-    ac_lr: { gridColumn: 3, gridRow: 7 }
+    ac_lr: { gridColumn: 3, gridRow: 7 },
   },
   name: {
-    fontSize: "smaller"
+    fontSize: "smaller",
   },
-  common: { backgroundColor: "pink" }
+  common: {
+    backgroundColor: "pink",
+  },
+  elementWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    lineHeight: "initial",
+    overflow: "hidden",
+  },
 };
 
 let elementsList: Array<object> = [];
@@ -155,7 +164,7 @@ for (const element in styles.elements) {
   const allElements = styles.elements;
   const newObject = {
     el: element,
-    ...allElements[element]
+    ...allElements[element],
   };
   elementsList.push(newObject);
 }
@@ -166,50 +175,43 @@ interface IElement {
   symbol: string;
 }
 
-const getElementByAtomicNumber = (atomicNumber: string, payload: any) =>
-  payload && payload.find((el: any) => el.number === atomicNumber);
+const getElementByAtomicNumber = (atomicNumber: number, payload: any) =>
+  payload.find((el: any) => el.number === atomicNumber);
 
-type AtomParams = {
-  atomicNumber: string;
-};
-export type AtomDetailProps = RouteComponentProps<AtomParams>;
-
-const PeriodicTable: React.FC<AtomDetailProps> = ({ history }) => {
+export const PeriodicTable: React.FC<any> = () => {
+  const navigate = useNavigate();
   const elementsContext = useContext(ElementContext);
-  const elementsPayload = elementsContext && elementsContext.data;
-
+  const elementsPayload = elementsContext?.data;
   return (
     <div style={styles.tableContainer}>
       {elementsList.map((item: any, idx: number) => {
         const atomicNumber = idx + 1;
-        const parsedAtomicNumber = atomicNumber.toString();
-        const elementObject: IElement = getElementByAtomicNumber(
-          parsedAtomicNumber,
+        const elementItem: IElement = getElementByAtomicNumber(
+          atomicNumber,
           elementsPayload
         );
-        const elementName = elementObject && elementObject.name;
-        const elementSymbol = elementObject && elementObject.symbol;
-        const elementNumber = elementObject && elementObject.number;
-
+        const elementName = elementItem?.name;
+        const elementSymbol = elementItem?.symbol;
+        const elementNumber = elementItem?.number;
         return (
           <motion.div
             whileHover={{ boxShadow: "0px 0px 0px 2px black inset" }}
             whileTap={{ scale: 3.0 }}
-            onClick={() => {
-              history.push("/" + atomicNumber);
-            }}
+            onClick={() => navigate("/" + atomicNumber)}
             key={atomicNumber}
-            style={{ ...styles.elements[item.el], ...styles.common }}
+            style={{
+              ...styles.elements[item.el],
+              ...styles.common,
+            }}
           >
-            <section>{elementNumber}</section>
-            <div>
+            <div style={styles.elementWrapper}>
+              <span>{elementNumber}</span>
               <b>{elementSymbol}</b>
+              <span style={styles.name}>{elementName}</span>
             </div>
-            <span style={styles.name}>{elementName}</span>
           </motion.div>
         );
       })}
     </div>
   );
 };
-export default withRouter(PeriodicTable);

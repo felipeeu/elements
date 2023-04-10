@@ -1,25 +1,18 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import PeriodicTable from "./components/periodic_table";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from "react-router-dom";
+import { CardElement } from "./components/CardElement";
+import { PeriodicTable } from "./components/PeriodicTable";
+import App from "./App";
 
-
-const CardElement = React.lazy(() => import("./components/card_element"));
-
-const Routes: React.FC<{ props: Array<object> }> = props => {
-  return (
-    <Switch>
-      <Route
-        path="/:atomicNumber"
-        render={() => (
-          <React.Suspense fallback={<span>...</span>}>
-            {" "}
-            <CardElement />
-          </React.Suspense>
-        )}
-      />
-      <Route path="/" exact render={() => <PeriodicTable />} />
-    </Switch>
-  );
-};
-
-export default Routes;
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route path="table" element={<PeriodicTable />} />
+      <Route path=":atomicNumber" element={<CardElement />} />
+    </Route>
+  )
+);

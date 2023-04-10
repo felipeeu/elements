@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { AtomDetailProps } from "./periodic_table";
-import ElementContext from "../context/elements_context";
+import ElementContext from "../context/ElementsContext";
 import styled from "styled-components";
 
 const Image = styled.img`
@@ -27,20 +26,19 @@ const PrevButton = styled.button`
 
 const NextButton = styled(PrevButton)``;
 
-const CardElement: React.FC<AtomDetailProps> = ({ match }) => {
-  const { atomicNumber } = match.params;
+export const CardElement: React.FC<any> = () => {
+  const { atomicNumber }: any = useParams();
   const actualNumber = parseInt(atomicNumber);
   const elementsContext = useContext(ElementContext);
   const elementsPayload = elementsContext && elementsContext.data;
   const elementData: any =
     elementsPayload &&
     elementsPayload.find((element: any) => element.number === atomicNumber);
-
   return (
     <motion.div
       whileHover={{
         boxShadow:
-          "0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)"
+          "0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)",
       }}
     >
       <Link to={`/${actualNumber === 1 ? actualNumber : actualNumber - 1}`}>
@@ -67,5 +65,3 @@ const CardElement: React.FC<AtomDetailProps> = ({ match }) => {
     </motion.div>
   );
 };
-
-export default withRouter(CardElement);
