@@ -1,25 +1,22 @@
 import React from "react";
-import { Header } from "./components/Header";
 import { Outlet } from "react-router-dom";
+import { PeriodicTable } from "./components/PeriodicTable";
 
-interface IStylesApp {
-  appContainer: any;
-}
-
-const styles: IStylesApp = {
-  appContainer: {
+const styles = {
+  container: {
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    justifyContent: "center",
   },
 };
 
 const App: React.FC<{}> = () => {
   return (
-    <div style={styles.appContainer}>
-      <Header />
-      <Outlet />
-    </div>
+    <>
+      <div style={styles.container}>
+        <Outlet />
+        <PeriodicTable />
+      </div>
+    </>
   );
 };
 

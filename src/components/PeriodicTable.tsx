@@ -14,8 +14,8 @@ interface IStyle {
 const styles: IStyle = {
   tableContainer: {
     display: "grid",
-    gridTemplateColumns: "repeat(18,  4vw )",
-    gridTemplateRows: "repeat(10, 4vw)",
+    gridTemplateColumns: "repeat(18,  5vw )",
+    gridTemplateRows: "repeat(10, 5vw)",
     gridRowGap: "3px",
     gridColumnGap: "3px",
     textAlign: "center",
@@ -145,7 +145,7 @@ const styles: IStyle = {
     ac_lr: { gridColumn: 3, gridRow: 7 },
   },
   name: {
-    fontSize: "smaller",
+    fontSize: "10px",
   },
   common: {
     backgroundColor: "pink",
@@ -153,7 +153,7 @@ const styles: IStyle = {
   elementWrapper: {
     display: "flex",
     flexDirection: "column",
-    lineHeight: "initial",
+    lineHeight: "1.4rem",
     overflow: "hidden",
   },
 };
@@ -197,7 +197,9 @@ export const PeriodicTable: React.FC<any> = () => {
           <motion.div
             whileHover={{ boxShadow: "0px 0px 0px 2px black inset" }}
             whileTap={{ scale: 3.0 }}
-            onClick={() => navigate("/" + atomicNumber)}
+            onClick={() =>
+              atomicNumber < 118 ? navigate("/" + atomicNumber) : null
+            }
             key={atomicNumber}
             style={{
               ...styles.elements[item.el],
