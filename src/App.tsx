@@ -16,6 +16,7 @@ const App: React.FC<{}> = () => {
         <Outlet />
         <PeriodicTable />
       </div>
+      <h3 className="text-center"> By Felipe Domingues</h3>
     </>
   );
 };
