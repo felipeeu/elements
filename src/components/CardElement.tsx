@@ -26,7 +26,10 @@ export const CardElement: React.FC<any> = () => {
   return (
     <div className="card" style={styles.card}>
       <div>
-        <span onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+        <span
+          onClick={() => navigate("/elements")}
+          style={{ cursor: "pointer" }}
+        >
           <b>X</b>
         </span>
         <figure className="w-75">

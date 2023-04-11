@@ -198,7 +198,7 @@ export const PeriodicTable: React.FC<any> = () => {
             whileHover={{ boxShadow: "0px 0px 0px 2px black inset" }}
             whileTap={{ scale: 3.0 }}
             onClick={() =>
-              atomicNumber < 118 ? navigate("/" + atomicNumber) : null
+              atomicNumber < 118 ? navigate("/elements/" + atomicNumber) : null
             }
             key={atomicNumber}
             style={{
