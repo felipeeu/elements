@@ -145,7 +145,7 @@ const styles: IStyle = {
     ac_lr: { gridColumn: 3, gridRow: 7 },
   },
   name: {
-    fontSize: "10px",
+    fontSize: "12px",
   },
   common: {
     backgroundColor: "pink",
@@ -209,7 +209,7 @@ export const PeriodicTable: React.FC<any> = () => {
             <div style={styles.elementWrapper}>
               <span>{elementNumber}</span>
               <b>{elementSymbol}</b>
-              <span style={styles.name}>{elementName}</span>
+              <h5 style={styles.name}>{elementName}</h5>
             </div>
           </motion.div>
         );

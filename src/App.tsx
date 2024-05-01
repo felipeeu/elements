@@ -12,6 +12,7 @@ const styles = {
 const App: React.FC<{}> = () => {
   return (
     <>
+      <h1 style={{ position: "absolute" }}>Periodic Table of Elements</h1>
       <div style={styles.container}>
         <Outlet />
         <PeriodicTable />

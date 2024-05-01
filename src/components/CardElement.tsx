@@ -7,9 +7,13 @@ interface IStyle {
 }
 const styles: IStyle = {
   card: {
-    position: "absolute",
+    position: "fixed",
     display: "flex",
     flexDirection: "row",
+    maxWidth: "50%",
+    top: 0,
+    right: "35%",
+    backgroundColor: "rgba(256, 256, 256, 0.75)",
   },
 };
 
@@ -30,7 +34,7 @@ export const CardElement: React.FC<any> = () => {
           onClick={() => navigate("/elements")}
           style={{ cursor: "pointer" }}
         >
-          <b>X</b>
+          <b>x</b>
         </span>
         <figure className="w-75">
           <img alt={elementData.name} src={`${elementData.image.url}`} />

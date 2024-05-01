@@ -10,7 +10,7 @@ import App from "./App";
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/elements" element={<App />}>
-      <Route path="/elements/:atomicNumber" element={<CardElement />} />
+     <Route path="/elements/:atomicNumber" element={<CardElement />} />
     </Route>
   )
 );
